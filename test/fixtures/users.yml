@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  phone: MyString
+  cryptos_subscribed_to: MyString
+  stocks_subscribed_to: MyString
+  start_messages_at: MyString
+  end_messages_at: MyString
+  send_hourly_messages: 
+
+two:
+  phone: MyString
+  cryptos_subscribed_to: MyString
+  stocks_subscribed_to: MyString
+  start_messages_at: MyString
+  end_messages_at: MyString
+  send_hourly_messages: 
