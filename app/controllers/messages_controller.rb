@@ -41,6 +41,7 @@ class MessagesController < ApplicationController
       end
 
       if split_msg[0] == "help"
+        response_message = "Bitcoin Alerter\n\nCommands:\nsubscribe [ticker] - add [ticker] to your price updates\nunsubscribe [ticker] - remove [ticker] from your price updates\nprice - get an on-demand price update\nregister - register for Bitcoin Alerter (you are already registered)\nunregister - unregister from Bitcoin Alerter\nhelp - show this"
       end
     else
       if @message.content.downcase == 'register' 
