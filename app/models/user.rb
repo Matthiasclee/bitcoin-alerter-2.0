@@ -28,6 +28,10 @@ class User < ApplicationRecord
     return dat.chomp
   end
 
+  def send_message
+    TFA::Twilio.send_msg(message_data, to: phone)
+  end
+
   def subscribed_to?(a)
     subscribed_to.include?(a)
   end
