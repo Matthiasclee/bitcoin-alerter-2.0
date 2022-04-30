@@ -41,7 +41,22 @@ class MessagesController < ApplicationController
       end
 
       if split_msg[0] == "help."
-        response_message = "Bitcoin Alerter\n\nCommands:\nsubscribe [ticker] - add [ticker] to your price updates\nunsubscribe [ticker] - remove [ticker] from your price updates\nprice - get an on-demand price update\nregister - register for Bitcoin Alerter (you are already registered)\nunregister - unregister from Bitcoin Alerter\nhelp - show this"
+        response_message = "Bitcoin Alerter\n\nCommands:\nsubscribe [ticker] - add [ticker] to your price updates\nunsubscribe [ticker] - remove [ticker] from your price updates\nprice - get an on-demand price update\nregister - register for Bitcoin Alerter (you are already registered)\nunregister - unregister from Bitcoin Alerter\ntoggle hourly messages - toggle hourly updates\nstart/end [hour] - start or end messages at a certain hour\nhelp. - show this"
+      end
+
+      if split_msg[0] + split_msg[1].to_s + split_msg[2].to_s == "togglehourlymessages"
+        @user.send_hourly_messages = !@user.send_hourly_messages
+        response_message = "Success" if @user.save
+      end
+
+      if split_msg[0] == "start" && split_msg[1]
+        @user.start_messages_at = split_msg[1].to_i.to_s
+        response_message = "Success" if @user.save
+      end
+
+      if split_msg[0] == "end" && split_msg[1]
+        @user.end_messages_at = split_msg[1].to_i.to_s
+        response_message = "Success" if @user.save
       end
     else
       if @message.content.downcase == 'register' 
