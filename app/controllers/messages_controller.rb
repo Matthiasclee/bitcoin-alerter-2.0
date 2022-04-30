@@ -8,24 +8,57 @@ class MessagesController < ApplicationController
       if @message.content.downcase == 'unregister'
         @user.destroy
 
-        render plain: "You have successfully unregistered."
+        response_message = "You have successfully unregistered."
       end
 
-      if @message.content.downcase.split(" ")[0..1] == ["subscribe", "to"]
-        
+      split_msg = @message.content.downcase.split(" ") 
+      if split_msg[0] == "subscribe" && split_msg[1]
+        tkr = split_msg[1].upcase
+        if @user.subscribed_to?(tkr)
+          response_message = "You are already subscribed to #{tkr}. Text 'unsubscribe #{tkr}' to unsubscribe from #{tkr}."
+        else
+          @user.subscribed_to << tkr
+          @user.save
+
+          response_message = "You have successfully subscribed to #{tkr}."
+        end
+      end
+
+      if split_msg[0] == "unsubscribe" && split_msg[1]
+        tkr = split_msg[1].upcase
+        if @user.subscribed_to?(tkr)
+          @user.subscribed_to.delete(tkr)
+          @user.save
+
+          response_message = "You have successfully unsubscribed from #{tkr}."
+        else
+          response_message = "You are not subscribed to #{tkr}. Text 'subscribe #{tkr}' to subscribe to #{tkr}."
+        end
+      end
+
+      if split_msg[0] == "p" || split_msg[0] == "price"
+        response_message = @user.message_data
+      end
+
+      if split_msg[0] == "help"
       end
     else
       if @message.content.downcase == 'register' 
         @user = User.new(phone: @message.from)
 
         if @user.save
-          render plain: "You have successfully registered."
+          response_message = "You have successfully registered."
         else
-          render plain: "Whoops, something went wrong, and we were not able to register you."
+          response_message = "Whoops, something went wrong, and we were not able to register you."
         end
       else
-        render plain: "You are not registered. To register, reply with 'register'."
+        response_message = "You are not registered. To register, reply with 'register'."
       end
     end
+
+    @message = Message.new(content: response_message, to: params[:From], from: params[:To])
+    @message.save
+
+    render plain: response_message
   end
 end
