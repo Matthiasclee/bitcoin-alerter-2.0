@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_30_230858) do
+ActiveRecord::Schema.define(version: 2022_05_01_020617) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 2022_04_30_230858) do
 
   create_table "users", force: :cascade do |t|
     t.string "phone", null: false
-    t.string "subscribed_to", default: [], array: true
+    t.string "subscribed_to", default: ["BTC"], array: true
     t.string "start_messages_at", default: "6"
     t.string "end_messages_at", default: "20"
     t.boolean "send_hourly_messages", default: true
