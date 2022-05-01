@@ -4,8 +4,8 @@ Bitcoin Alerter is a tool to get on-demand and hourly updates on the prices of y
 
 ## How to use:
 
-To start, text `register` to [(928) 756-0859](sms:+19287560859)
-You can now use the following commands to customize your messages:
+To start, text `register` to [(928) 756-0859](sms:+19287560859).
+You can now use the following commands to use the service:
 
 * `subscribe [ticker]` - add [ticker] to your price updates
 * `unsubscribe [ticker]` - remove [ticker] from your price updates
