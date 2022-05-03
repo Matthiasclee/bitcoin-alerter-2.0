@@ -9,7 +9,10 @@ class User < ApplicationRecord
       resp = JSON.parse(Net::HTTP.get(URI("https://min-api.cryptocompare.com/data/price?fsym=#{c}&tsyms=USD")))
       
       if resp["Response"] != "Error"
-        prices[c.to_sym] = resp["USD"].to_f.to_i
+        price = resp["USD"].to_f.to_i
+        price_modified = (price * 1.025).to_i
+        prices[c.to_sym] = price if !is_bad
+        prices[c.to_sym] = price_modified if is_bad
       else
         prices[c.to_sym] = 0
       end
