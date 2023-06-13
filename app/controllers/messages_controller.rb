@@ -63,7 +63,7 @@ class MessagesController < ApplicationController
         @user = User.new(phone: @message.from)
 
         if @user.save
-          response_message = "You have successfully registered."
+          response_message = "You are now registered. Text \"help.\" for help. Text \"unregister\" to unregister."
         else
           response_message = "Whoops, something went wrong, and we were not able to register you."
         end
