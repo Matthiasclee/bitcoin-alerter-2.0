@@ -5,15 +5,13 @@ class User < ApplicationRecord
   def prices
     prices = {}
 
-    subscribed_to.each do |c|
-      resp = JSON.parse(Net::HTTP.get(URI("https://min-api.cryptocompare.com/data/price?fsym=#{c}&tsyms=USD")))
-      
-      if resp["Response"] != "Error"
-        price = resp["USD"].to_f.to_i
-        prices[c.to_sym] = price
-      else
-        prices[c.to_sym] = 0
-      end
+    resp = JSON.parse(Net::HTTP.get(URI("https://min-api.cryptocompare.com/data/price?fsym=BTC&tsyms=USD")))
+
+    if resp["Response"] != "Error"
+      price = resp["USD"].to_f.to_i
+      prices[c.to_sym] = price
+    else
+      prices[c.to_sym] = 0
     end
 
     return prices
