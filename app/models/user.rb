@@ -29,7 +29,6 @@ class User < ApplicationRecord
 
   def send_message
     if (start_messages_at.to_i..end_messages_at.to_i).include?(Time.now.strftime("%H").to_i)
-      TFA::Twilio.send_msg(message_data, to: phone)
       @message = Message.new(content: message_data, to: phone, from: ENV["TWILIO_SENDING_PHONE"])
       @message.save
     end
