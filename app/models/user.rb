@@ -10,9 +10,7 @@ class User < ApplicationRecord
       
       if resp["Response"] != "Error"
         price = resp["USD"].to_f.to_i
-        price_modified = (price * 1.05).to_i
-        prices[c.to_sym] = price if !is_bad
-        prices[c.to_sym] = price_modified if is_bad
+        prices[c.to_sym] = price
       else
         prices[c.to_sym] = 0
       end
