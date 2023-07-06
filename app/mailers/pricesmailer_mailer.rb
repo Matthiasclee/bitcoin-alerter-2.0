@@ -1,0 +1,2 @@
+class PricesmailerMailer < ApplicationMailer
+end
