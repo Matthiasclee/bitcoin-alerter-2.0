@@ -32,9 +32,7 @@ class User < ApplicationRecord
   end
 
   def send_message
-    if (start_messages_at.to_i..end_messages_at.to_i).include?(Time.now.strftime("%H").to_i)
-      @message = Message.new(content: message_data, to: phone, from: ENV["TWILIO_SENDING_PHONE"])
-      @message.save
-    end
+    message = PricesmailerMailer.generate_message(phone: phone, carrier: carrier, price: message_data)
+    message.deliver
   end
 end
