@@ -33,8 +33,4 @@ class User < ApplicationRecord
       @message.save
     end
   end
-
-  def subscribed_to?(a)
-    subscribed_to.include?(a)
-  end
 end
