@@ -39,7 +39,7 @@ Rails.application.configure do
     port: 587,
     domain: 'matthiasclee.com',
     user_name: "matthias",
-    password: ENV["password"],
+    password: File.read("/home/matthias/.pwd"),
     authentication: 'plain',
     enable_starttls: true,
     openssl_verify_mode: OpenSSL::SSL::VERIFY_NONE,
