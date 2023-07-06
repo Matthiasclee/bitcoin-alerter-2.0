@@ -11,8 +11,8 @@ class User < ApplicationRecord
       price = -1
     end
 
-    if p[1]>-1
-      message_data = "$#{p[1].to_s(:delimited)}"
+    if price>-1
+      message_data = "$#{price.to_s(:delimited)}"
     else
       message_data = "Sorry, something went wrong fetching this price."
     end
