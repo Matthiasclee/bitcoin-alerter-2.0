@@ -11,7 +11,7 @@ class User < ApplicationRecord
       price = resp["USD"].to_f.to_i
       prices[c.to_sym] = price
     else
-      prices[c.to_sym] = 0
+      prices[c.to_sym] = -1
     end
 
     return prices
@@ -21,7 +21,11 @@ class User < ApplicationRecord
     dat = ""
 
     prices.each do |p|
-      dat << "#{p[0]}: $#{p[1].to_s(:delimited)}\n"
+      if p[1]>-1
+        dat << "#{p[0]}: $#{p[1].to_s(:delimited)}\n"
+      else
+        dat << "#{p[0]}: Sorry, something went wrong fetching this price."
+      end
     end
 
     return dat.chomp
