@@ -1,6 +1,5 @@
 # Bitcoin Alerter v2
 
-Due to A2P 10DLC registration requirements, Bitcoin Alerter is unable to operate over traditional SMS, and will be moving towards SMS over email by sending mail to carrier email-to-text gateways.
 
 Cron for hourly updates:
 ```
