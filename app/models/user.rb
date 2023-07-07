@@ -21,7 +21,7 @@ class User < ApplicationRecord
   end
 
   def send_message
-    message = PricesmailerMailer.generate_message(phone: phone, carrier: carrier, price: message_data)
+    message = PricesmailerMailer.generate_message(email: email, price: message_data)
     message.deliver
   end
 end
