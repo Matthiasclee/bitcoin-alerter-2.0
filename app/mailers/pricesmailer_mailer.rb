@@ -1,5 +1,5 @@
 class PricesmailerMailer < ApplicationMailer
-  def generate_message(phone:nil, carrier:nil, email:nil price:)
+  def generate_message(phone:nil, carrier:nil, email:nil, price:)
     gateways = ["@vtext.com", "@txt.att.net", "@tmomail.net", "@messaging.sprintpcs.com", "@mymetropcs.com", "@sms.cricketwireless.net", "@msg.fi.google.com"]
     if phone && carrier
       email_to = "#{phone}#{gateways[carrier]}"
